@@ -1,0 +1,120 @@
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  
+  
+  input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  
+#captcha{ position: relative; }
+
+.captcha{
+    position: absolute;
+    padding: 5px;
+    border: 1px solid grey;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.captcha__title{
+    height: 60px;
+    background: #41c0e0;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 2%;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.captcha__content{
+    display: flex;
+    flex-direction: column;
+}
+
+.captcha__content .captcha__row{
+    display: flex;
+    width: 100%;
+}
+
+
+
+.captcha__content .captcha__row div{
+    height: 90px;
+    width: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    font-weight: bold; 
+}
+
+.captcha__content .captcha__row img{
+    height: 90px;
+    width: 90px;
+}
+
+.captcha__content .captcha__row div:not(:first-child){ margin-left: 5px; }
+
+.captcha__content .captcha__row:not(:last-child){
+    margin-bottom: 5px;
+}
+
+.captcha__button{
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0px;
+}
+
+.captcha__button button{
+    background: #41c0e0;
+    color: #ffffff;
+    border: 0;
+    height: 35px;
+    font-size: 18px;
+    outline: 0;
+    cursor: pointer;
+}
+
+.captcha__button button:hover{
+    background: #38a7c3;
+}
+
+.hold {
+    border: solid #ccc 2px;
+}
+
+.hovered{
+    background: #f4f4f4;
+    border-style: dashed;
+}
+
+.invisible{
+    display: none;;
+}
+
+.fill{
+    background-image: url('https://source.unsplash.com/random/150x150');
+}
