@@ -7,6 +7,8 @@ export class Captcha
     {
         this.form = form;
         this.captcha_element = ".captcha__row div";
+        this.captcha_button  = ".captcha__button button";
+        this.captcha_overlay = ".captcha__overlay";
         this.validation_pattern = "123456789";
     }
 
@@ -22,14 +24,17 @@ export class Captcha
     init()
     {
         // Inserting images randomly
+
         document.addEventListener("DOMContentLoaded", this.shuffle);
+
         // Creating events for dragging.
         new Event('dragstart', e => this.dragStart(e), this.captcha_element, 'class');
         new Event('dragend', e => this.dragEnd(e), this.captcha_element, 'class');
         new Event('dragover', e => this.dragOver(e), this.captcha_element, 'class');
         new Event('drop', e => this.dragDrop(e), this.captcha_element, 'class');
 
-        new Event('submit', e => this.validate(e), this.form, this.GetSelectorType(this.form));
+        new Event('submit', e => this.showModal(e), this.form, this.GetSelectorType(this.form));
+        new Event('click',  e => this.validate(e), this.captcha_button, this.GetSelectorType(this.captcha_button));
     }
 
     shuffle()
@@ -82,10 +87,19 @@ export class Captcha
         this.start.src = this.drop;
     }
 
-    validate(e)
+    showModal(e)
     {
     	e.preventDefault();
-    	console.log(e.target);
+        const overlay  = document.querySelector(this.captcha_overlay);
+        overlay.style.display = "initial";
+        this.formtarget = e.target;
     }
 
+    validate(e)
+    {
+        const elements = document.querySelectorAll(this.captcha_element + " img"); 
+        const images   = Array.from(elements).map(el => el.src.substr(-5, 1)).join('');
+        if(images === this.validation_pattern) this.formtarget.submit();
+        else alert("Паззл собран не верно!");
+    }
 }
