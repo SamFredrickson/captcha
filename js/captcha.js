@@ -6,6 +6,8 @@ export class Captcha
     constructor(form)
     {
         this.form = form;
+        this.captcha_element = ".captcha__row div";
+        this.validation_pattern = "123456789";
     }
 
     GetSelectorType()
@@ -22,10 +24,12 @@ export class Captcha
         // Inserting images randomly
         document.addEventListener("DOMContentLoaded", this.shuffle);
         // Creating events for dragging.
-        new Event('dragstart', e => this.dragStart(e), ".captcha__row img", 'class');
-        new Event('dragend', e => this.dragEnd(e), ".captcha__row img", 'class');
-        new Event('dragover', e => this.dragOver(e), ".captcha__row div", 'class');
-        new Event('drop', e => this.dragDrop(e), ".captcha__row div", 'class');
+        new Event('dragstart', e => this.dragStart(e), this.captcha_element, 'class');
+        new Event('dragend', e => this.dragEnd(e), this.captcha_element, 'class');
+        new Event('dragover', e => this.dragOver(e), this.captcha_element, 'class');
+        new Event('drop', e => this.dragDrop(e), this.captcha_element, 'class');
+
+        new Event('submit', e => this.validate(e), this.form, this.GetSelectorType(this.form));
     }
 
     shuffle()
@@ -44,7 +48,7 @@ export class Captcha
             pattern += `<div class="captcha__row">`;
             for(let j = from; j < to; j++){
                 pattern += `<div>
-                        <img draggable="true" src="images/${numbers[j]}.jpg" id="i${numbers[j]}">
+                        <img draggable="true" src="images/${numbers[j]}.jpg">
                     </div>`;
             }
             pattern += `</div>`;
@@ -52,7 +56,7 @@ export class Captcha
             from += 3; to += 3;
         }
 
-        captchaContent.insertAdjacentHTML("afterbegin", pattern);
+        captchaContent.innerHTML = pattern;
         
     }
 
@@ -76,6 +80,12 @@ export class Captcha
         this.drop = e.target.src;
         e.target.src = this.start.src;
         this.start.src = this.drop;
+    }
+
+    validate(e)
+    {
+    	e.preventDefault();
+    	console.log(e.target);
     }
 
 }

@@ -7,9 +7,9 @@ export class Event
         this.selectorType = selectorType;
 
         switch(this.selectorType){
-            case 'class': this.HookOnClass();
-            case 'id'   : this.HookOnId();
-            case 'tag'  : this.HookOnTag();
+            case 'class': this.HookOnClass(); break;
+            case 'id'   : this.HookOnId(); break;
+            case 'tag'  : this.HookOnTag(); break;
         }
 
    }

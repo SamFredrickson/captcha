@@ -29,7 +29,15 @@
         </form>
       </div>
 
-      <div class="captcha">
+  
+
+<script type="module">
+    import {Captcha} from "./js/captcha.js";
+    new Captcha("#captcha").init();
+</script>
+
+
+ <div class="captcha">
         <div class="captcha__title">Соберите яблоко</div>
         <div class="captcha__content">
            
@@ -38,13 +46,5 @@
             <button>Проверить</button>
         </div>
     </div>
-
-  
-
-<script type="module">
-    import {Captcha} from "./js/captcha.js";
-    new Captcha("form").init();
-</script>
-
 </body>
 </html>

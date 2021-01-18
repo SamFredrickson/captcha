@@ -76,10 +76,10 @@ input[type=text], select {
     width: 90px;
 }
 
-.captcha__content .captcha__row div:not(:first-child){ margin-left: 5px; }
+.captcha__content .captcha__row div:not(:first-child){ margin-left: 2px; }
 
 .captcha__content .captcha__row:not(:last-child){
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 .captcha__button{
